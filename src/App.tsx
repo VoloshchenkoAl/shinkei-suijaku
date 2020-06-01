@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, useHistory } from 'react-router-dom';
+import { useMachine } from '@xstate/react';
 
-function App() {
+/* @Pages */
+import { Start } from 'pages/Start';
+import { Game } from 'pages/Game';
+
+/* @Machine */
+import { gameMachine } from 'machines/game';
+
+const App = () => {
+  const [gameState, gameDispatch] = useMachine(gameMachine);
+  const history = useHistory();
+
+  const onLoadCards = (cards: GameCard[]) => {
+    gameDispatch({
+      type: 'SET_CARDS',
+      cards,
+    });
+
+    history.push('/game');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path="/game">
+        <Game state={gameState} dispatcher={gameDispatch} />
+      </Route>
+      <Route path="/">
+        <Start handleLoadCars={onLoadCards} />
+      </Route>
+    </Switch>
   );
-}
+};
 
 export default App;

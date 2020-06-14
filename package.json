@@ -2,6 +2,7 @@
   "name": "picture-matching-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://voloshchenkoal.github.io/match-game",
   "dependencies": {
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.2.1",

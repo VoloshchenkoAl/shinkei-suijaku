@@ -7,7 +7,10 @@ import { cardMachine } from 'machines/card';
 /* @Types */
 import { CardProps } from './types';
 
-const Card: React.FC<CardProps> = (props) => {
+/* @Styles */
+import './Card.css';
+
+const Card: React.FunctionComponent<CardProps> = (props) => {
   const [state, send] = useMachine(cardMachine);
   const {
     isRevealed,
@@ -24,30 +27,35 @@ const Card: React.FC<CardProps> = (props) => {
     send({ type });
   }, [isRevealed, send]);
 
+  const handleMouseEnter = () => {
+    send({ type: 'DETAIL' });
+  };
+
+  const handleMouseLeave = () => {
+    send({ type: 'REVEAL_DETAILED' });
+  };
+
   return (
     <div
-      style={{
-        width: '200px',
-        height: '144px',
-      }}
+      className="game-card"
       onClick={() => onClick({ id, uniqKey })}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {state.matches('unguessed') ? (
-        <div>xxx</div>
+        <div className="game-card__hide" />
       ) : (
-        <div>
-          <img
-            src={image.link}
-            alt={description}
-            width="200px"
-            height="144px"
-          />
+        <div className="game-card-info">
+          <img src={image.link} alt={description} />
           {state.matches('detailed') ? (
-            <div>{author.name}</div>
+            <div className="game-card-detailed">
+              <span>
+                {author.name} on <a href={author.link}>Unsplash</a>
+              </span>
+            </div>
           ) : null}
         </div>
       )}
-      <div></div>
     </div>
   );
 };

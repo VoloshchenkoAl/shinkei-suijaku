@@ -26,6 +26,7 @@ interface CardImprint {
  * Game Machine
  */
 interface GameMachineContext {
+  sourceCard: GameCard[];
   cards: GameCard[];
   attempts: number;
   roundMatch: CardImprint[];
@@ -58,8 +59,7 @@ type GameMachineEvent =
   | SetCardsEvent
   | MatchEvent
   | { type: 'EXIT_GAME' }
-  | { type: 'PLAY_AGAIN' }
-  | { type: 'START_GAME' };
+  | { type: 'PLAY_AGAIN' };
 
 /**
  * InitGame machine
@@ -96,7 +96,6 @@ type InitGameMachineEvent =
  */
 type CardState = {
   states: {
-    unguessed: {};
     revealed: {};
     detailed: {};
   };
@@ -105,6 +104,7 @@ type CardState = {
 type CardEvent =
   | { type: 'REVEAL' }
   | { type: 'DETAIL' }
+  | { type: 'REVEAL_DETAILED' }
   | { type: 'UNGUESSED' };
 
 /**

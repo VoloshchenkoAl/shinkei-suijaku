@@ -3,7 +3,10 @@ import React from 'react';
 /* @Types */
 import { InputProps } from './types';
 
-const Input: React.FC<InputProps> = (props) => {
+/* @Styles */
+import './Input.css';
+
+const Input: React.FunctionComponent<InputProps> = (props) => {
   const { onChange, value, label, type, error } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,12 +18,18 @@ const Input: React.FC<InputProps> = (props) => {
   return (
     <div>
       <label>
-        <span>{label}</span>
-        <br />
-        <input type={type} value={value} onChange={handleChange} />
-        <br />
+        {!!label ? <span>{label}</span> : null}
+        <input
+          className="input"
+          type={type}
+          value={value}
+          onChange={handleChange}
+        />
         {!!error ? (
-          <span style={{ color: 'tomato' }}>{error}</span>
+          <>
+            <br />
+            <span style={{ color: 'tomato' }}>{error}</span>
+          </>
         ) : null}
       </label>
     </div>

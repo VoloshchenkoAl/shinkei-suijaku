@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
-import { State } from 'xstate';
+import React from 'react';
+
+/* @Types */
+import { GameState } from 'machines/game/types';
 
 /* @Components */
 import { GameComponent } from './GameComponent';
 
 type GameContainerProps = {
-  state: State<
-    GameMachineContext,
-    GameMachineEvent,
-    any,
-    { value: any; context: GameMachineContext }
-  >;
+  state: GameState;
   dispatcher: (event: GameMachineEvent) => void;
 };
 
@@ -36,28 +33,14 @@ const GameContainer: React.FunctionComponent<GameContainerProps> = (
     });
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatcher({ type: 'START_GAME' });
-    }, 5000);
-  }, [dispatcher]);
-
   return (
-    <>
-      {state.matches('gameOver') ? (
-        <h2>game over</h2>
-      ) : state.matches('win') ? (
-        <h2>your win</h2>
-      ) : (
-        <GameComponent
-          cards={cards}
-          openedCards={openedCards}
-          handleClick={handleClick}
-          forceOpenedCards={forceOpenedCards}
-          attempts={attempts}
-        />
-      )}
-    </>
+    <GameComponent
+      cards={cards}
+      openedCards={openedCards}
+      handleClick={handleClick}
+      forceOpenedCards={forceOpenedCards}
+      attempts={attempts}
+    />
   );
 };
 

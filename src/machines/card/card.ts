@@ -9,9 +9,6 @@ const cardMachine = Machine<CardState, CardEvent>({
         DETAIL: {
           target: 'detailed',
         },
-        UNGUESSED: {
-          target: 'unguessed',
-        },
       },
     },
     unguessed: {
@@ -23,10 +20,15 @@ const cardMachine = Machine<CardState, CardEvent>({
     },
     detailed: {
       on: {
-        REVEAL: {
+        REVEAL_DETAILED: {
           target: 'revealed',
         },
       },
+    },
+  },
+  on: {
+    UNGUESSED: {
+      target: 'unguessed',
     },
   },
 });

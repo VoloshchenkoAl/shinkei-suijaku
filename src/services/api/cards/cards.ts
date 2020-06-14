@@ -9,8 +9,7 @@ export const cardsApi = {
     const url = 'https://api.unsplash.com/search/photos';
     const method = 'GET';
     const headers = {
-      Authorization:
-        'Client-ID OsYnyEfemwLLpoZ0pApQL38x1KYwg2MR4ZgkUPICnGs',
+      Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_AUTH_KEY}`,
     };
     const query = {
       query: searchValue,

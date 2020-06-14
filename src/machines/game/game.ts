@@ -2,7 +2,7 @@ import { Machine, assign } from 'xstate';
 
 const maxAttempts: number = 3;
 const matchCards: number = 2;
-const checkDelay: number = 1000;
+const checkDelay: number = 500;
 
 const gameMachine = Machine<
   GameMachineContext,
@@ -13,6 +13,7 @@ const gameMachine = Machine<
     id: 'gameMachine',
     initial: 'start',
     context: {
+      sourceCard: [],
       cards: [],
       attempts: 0,
       roundMatch: [],
@@ -29,8 +30,8 @@ const gameMachine = Machine<
         },
       },
       prepare: {
-        on: {
-          START_GAME: {
+        after: {
+          5000: {
             target: 'playing',
             actions: 'hideForceOpenedCards',
           },
@@ -76,8 +77,12 @@ const gameMachine = Machine<
           },
         },
       },
-      gameOver: {},
-      win: {},
+      gameOver: {
+        entry: 'gameOver',
+      },
+      win: {
+        entry: 'gameWin',
+      },
       exit: {
         type: 'final',
       },
@@ -111,8 +116,9 @@ const gameMachine = Machine<
             uniqKey: card.uniqKey + index,
           }));
 
-          return gameCards;
+          return gameCards.sort(() => Math.random() - 0.5);
         },
+        sourceCard: (ctx, event) => (event as SetCardsEvent).cards,
       }),
       setRoundMatch: assign({
         roundMatch: (ctx, event) =>
@@ -147,7 +153,7 @@ const gameMachine = Machine<
     },
     guards: {
       checkRound: (ctx) => matchCards === ctx.roundMatch.length,
-      gameOverCheck: (ctx) => ctx.attempts === maxAttempts,
+      gameOverCheck: (ctx) => ctx.attempts >= maxAttempts,
       winCheck: (ctx) => ctx.openCards.length === ctx.cards.length,
     },
   },

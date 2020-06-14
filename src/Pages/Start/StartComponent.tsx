@@ -1,15 +1,14 @@
 import React from 'react';
 
+/* @Types */
+import { StartComponentProps } from './types';
+
 /* @Components */
 import { Input } from 'components/Input';
 import { Button } from 'components/Button';
 
-type StartComponentProps = {
-  handleInputChange: (value: string) => void;
-  handleSearchImages: () => void;
-  value: string;
-  searchValidationError: string;
-};
+/* @Styles */
+import './Start.css';
 
 const StartComponent: React.FunctionComponent<StartComponentProps> = (
   props,
@@ -27,18 +26,16 @@ const StartComponent: React.FunctionComponent<StartComponentProps> = (
   };
 
   return (
-    <div>
-      <h1>Try to find any words, for starting your first game</h1>
+    <div className="start-game__container">
+      <h1>Write any word to start to play the game</h1>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="start-game__form">
         <Input
           value={value}
           onChange={handleInputChange}
-          label="Type any words"
           error={searchValidationError}
         />
-        <br />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">start game!</Button>
       </form>
     </div>
   );

@@ -1,15 +1,13 @@
 import React from 'react';
 
+/* @Types */
+import { GameComponentProps } from './types';
+
 /* @Components */
 import { Card } from 'components/Card';
 
-type GameComponentProps = {
-  cards: GameCard[];
-  openedCards: CardImprint[];
-  handleClick: (cardImprint: CardImprint) => void;
-  forceOpenedCards: boolean;
-  attempts: number;
-};
+/* @Styles */
+import './Game.css';
 
 const GameComponent: React.FunctionComponent<GameComponentProps> = (
   props,
@@ -23,9 +21,9 @@ const GameComponent: React.FunctionComponent<GameComponentProps> = (
   } = props;
 
   return (
-    <>
-      <h2>Failed -- {attempts}</h2>
-      <section style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <section className="game_section">
+      <h2>You have {3 - attempts} attempts</h2>
+      <section className="game_play">
         {cards.map((card) => (
           <Card
             isRevealed={
@@ -40,7 +38,7 @@ const GameComponent: React.FunctionComponent<GameComponentProps> = (
           />
         ))}
       </section>
-    </>
+    </section>
   );
 };
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 
+/* @Types */
+import { StartContainerProps } from './types';
+
 /* @Machine */
 import { initGameMachine } from 'machines/initGame';
 
@@ -12,10 +15,6 @@ import { cardsApi } from 'services/api/cards';
 
 /* @Utils */
 import { getValidationText } from './utils';
-
-type StartContainerProps = {
-  handleLoadCars: (cards: GameCard[]) => void;
-};
 
 const StartContainer: React.FunctionComponent<StartContainerProps> = (
   props,

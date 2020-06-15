@@ -22,5 +22,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REACT_APP_UNSPLASH_AUTH_KEY: ${{ secrets.REACT_APP_UNSPLASH_AUTH_KEY }}
+          NODE_PATH: ${{ secrets.NODE_PATH }}
           BRANCH: gh-pages
           FOLDER: build

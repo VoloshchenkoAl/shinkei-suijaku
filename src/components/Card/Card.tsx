@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 
 /* @Machine */
-import { cardMachine } from 'machines/card';
+import { cardMachine } from 'Machines/card';
 
 /* @Types */
 import { CardProps } from './types';

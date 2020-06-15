@@ -4,8 +4,8 @@ import React from 'react';
 import { StartComponentProps } from './types';
 
 /* @Components */
-import { Input } from 'components/Input';
-import { Button } from 'components/Button';
+import { Input } from 'Components/Input';
+import { Button } from 'Components/Button';
 
 /* @Styles */
 import './Start.css';

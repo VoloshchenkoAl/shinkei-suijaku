@@ -1,5 +1,5 @@
 /* @Types */
-import { GameState } from 'machines/game/types';
+import { GameState } from './types';
 
 export const isCardsExistsSelector = (
   gameContext: GameMachineContext,

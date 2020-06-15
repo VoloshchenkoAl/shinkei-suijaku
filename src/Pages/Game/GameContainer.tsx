@@ -1,7 +1,7 @@
 import React from 'react';
 
 /* @Types */
-import { GameState } from 'machines/game/types';
+import { GameState } from 'Machines/game/types';
 
 /* @Components */
 import { GameComponent } from './GameComponent';

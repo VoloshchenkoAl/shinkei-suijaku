@@ -1,5 +1,5 @@
 import { createMachine, assign } from 'xstate';
-import { pictureSearchValidation } from 'services/validation/pictureSearch';
+import { pictureSearchValidation } from 'Services/validation/pictureSearch';
 
 const initGameMachine = createMachine<
   InitGameMachineContext,

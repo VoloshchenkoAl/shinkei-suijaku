@@ -5,13 +5,13 @@ import { useMachine } from '@xstate/react';
 import { StartContainerProps } from './types';
 
 /* @Machine */
-import { initGameMachine } from 'machines/initGame';
+import { initGameMachine } from 'Machines/initGame';
 
 /* @Components */
 import { StartComponent } from './StartComponent';
 
 /* @Api */
-import { cardsApi } from 'services/api/cards';
+import { cardsApi } from 'Services/api/cards';
 
 /* @Utils */
 import { getValidationText } from './utils';

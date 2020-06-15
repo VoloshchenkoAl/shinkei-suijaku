@@ -4,7 +4,7 @@ import React from 'react';
 import { GameComponentProps } from './types';
 
 /* @Components */
-import { Card } from 'components/Card';
+import { Card } from 'Components/Card';
 
 /* @Styles */
 import './Game.css';

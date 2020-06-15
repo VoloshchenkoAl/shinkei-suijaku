@@ -8,14 +8,14 @@ import {
 import { useMachine } from '@xstate/react';
 
 /* @Selectors */
-import { isCardsExistsSelector } from 'machines/game/selector';
+import { isCardsExistsSelector } from 'Machines/game/selector';
 
 /* @Pages */
-import { Start } from 'pages/Start';
-import { Game } from 'pages/Game';
+import { Start } from 'Pages/Start';
+import { Game } from 'Pages/Game';
 
 /* @Machine */
-import { gameMachine } from 'machines/game';
+import { gameMachine } from 'Machines/game';
 
 const App = () => {
   const history = useHistory();
@@ -45,7 +45,7 @@ const App = () => {
         )}
       </Route>
       <Route path="/game-over">
-        <h1>Your Loos!</h1>
+        <h1>Your Loose!</h1>
       </Route>
       <Route path="/win">
         <h1>Your Win!</h1>

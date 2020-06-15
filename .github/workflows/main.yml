@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
@@ -14,7 +14,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Deploy 🚀
@@ -22,6 +22,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REACT_APP_UNSPLASH_AUTH_KEY: ${{ secrets.REACT_APP_UNSPLASH_AUTH_KEY }}
-          NODE_PATH: ${{ secrets.NODE_PATH }}
           BRANCH: gh-pages
           FOLDER: build

@@ -13,6 +13,8 @@ jobs:
           persist-credentials: false
 
       - name: Install and Build 🔧
+        env:
+          REACT_APP_UNSPLASH_AUTH_KEY: ${{ secrets.REACT_APP_UNSPLASH_AUTH_KEY }}
         run: |
           npm ci
           npm run build
@@ -21,6 +23,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REACT_APP_UNSPLASH_AUTH_KEY: ${{ secrets.REACT_APP_UNSPLASH_AUTH_KEY }}
           BRANCH: gh-pages
           FOLDER: build

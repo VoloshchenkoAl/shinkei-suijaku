@@ -45,7 +45,7 @@ const App = () => {
         )}
       </Route>
       <Route path="/game-over">
-        <h1>Your Loose!</h1>
+        <h1>Your Loose the game!</h1>
       </Route>
       <Route path="/win">
         <h1>Your Win!</h1>

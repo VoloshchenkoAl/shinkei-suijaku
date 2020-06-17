@@ -8,3 +8,4 @@
 - change const component to function component
 - remove all any
 - add config to application
+- set base config route

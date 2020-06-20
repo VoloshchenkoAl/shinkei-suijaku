@@ -58,6 +58,7 @@ type MatchEvent = { type: 'MATCH'; cardImprint: CardImprint };
 type GameMachineEvent =
   | SetCardsEvent
   | MatchEvent
+  | { type: 'PLAY' }
   | { type: 'EXIT_GAME' }
   | { type: 'PLAY_AGAIN' };
 

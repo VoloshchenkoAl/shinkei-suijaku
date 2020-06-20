@@ -4,4 +4,6 @@ export type GameComponentProps = {
   handleClick: (cardImprint: CardImprint) => void;
   forceOpenedCards: boolean;
   attempts: number;
+  countdownTime: number;
+  isCountdownEnd: boolean;
 };

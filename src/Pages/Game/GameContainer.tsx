@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useMachine } from '@xstate/react';
 
 /* @Types */
 import { GameState } from 'Machines/game/types';
 
 /* @Components */
 import { GameComponent } from './GameComponent';
+
+/* @Machines */
+import { countdownMachine } from 'Machines/countdown/countdown';
 
 type GameContainerProps = {
   state: GameState;
@@ -15,6 +19,28 @@ const GameContainer: React.FunctionComponent<GameContainerProps> = (
   props,
 ) => {
   const { state, dispatcher } = props;
+
+  /* @Hooks */
+  const [countdownState, sendCountdownActions] = useMachine(
+    countdownMachine,
+    {
+      actions: {
+        countdownEnd: () => {
+          dispatcher({
+            type: 'PLAY',
+          });
+        },
+      },
+    },
+  );
+
+  useEffect(() => {
+    sendCountdownActions({
+      type: 'START',
+    });
+  }, [sendCountdownActions]);
+
+  /* Values */
   const {
     cards,
     roundMatch,
@@ -26,6 +52,7 @@ const GameContainer: React.FunctionComponent<GameContainerProps> = (
     new Set([...roundMatch, ...openCards]),
   );
 
+  /* @Handlers */
   const handleClick = (cardImprint: CardImprint) => {
     dispatcher({
       type: 'MATCH',
@@ -40,6 +67,8 @@ const GameContainer: React.FunctionComponent<GameContainerProps> = (
       handleClick={handleClick}
       forceOpenedCards={forceOpenedCards}
       attempts={attempts}
+      countdownTime={countdownState.context.timer}
+      isCountdownEnd={countdownState.matches('end')}
     />
   );
 };

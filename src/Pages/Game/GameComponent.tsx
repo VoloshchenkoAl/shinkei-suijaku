@@ -18,11 +18,16 @@ const GameComponent: React.FunctionComponent<GameComponentProps> = (
     handleClick,
     forceOpenedCards,
     attempts,
+    countdownTime,
+    isCountdownEnd,
   } = props;
 
   return (
     <section className="game_section">
-      <h2>You have {3 - attempts} attempts</h2>
+      {isCountdownEnd && <h2>You have {3 - attempts} attempts</h2>}
+      {!isCountdownEnd && (
+        <h2>Game start at {countdownTime / 1000} seconds</h2>
+      )}
       <section className="game_play">
         {cards.map((card) => (
           <Card

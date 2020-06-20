@@ -30,8 +30,8 @@ const gameMachine = Machine<
         },
       },
       prepare: {
-        after: {
-          5000: {
+        on: {
+          PLAY: {
             target: 'playing',
             actions: 'hideForceOpenedCards',
           },

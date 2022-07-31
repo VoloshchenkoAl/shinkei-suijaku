@@ -1,1 +1,0 @@
-export { gameMachine } from './game';

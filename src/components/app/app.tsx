@@ -1,51 +1,18 @@
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import { useMachine } from '@xstate/react';
-
-/* @Selectors */
-import { isCardsExistsSelector } from 'machines/game/selector';
+import { Routes, Route } from 'react-router-dom';
 
 /* @Pages */
-import { Start } from 'pages/start';
-import { Game } from 'pages/game';
+import { WelcomePage } from 'pages/welcome-page';
+import { PreparePage } from 'pages/prepare-page';
 
-/* @Machine */
-import { gameMachine } from 'machines/game';
+/* @Components */
+import { Layout } from 'components/layout';
 
 function App() {
-  const navigate = useNavigate();
-  const [gameState, gameDispatch] = useMachine(gameMachine, {
-    actions: {
-      gameOver: () => navigate('/game-over'),
-      gameWin: () => navigate('/win'),
-    },
-  });
-
-  const onLoadCards = (cards: GameCard[]) => {
-    gameDispatch({
-      type: 'SET_CARDS',
-      cards,
-    });
-
-    navigate('/game');
-  };
-
   return (
     <Routes>
-      <Route path="/game">
-        {isCardsExistsSelector(gameState.context) ? (
-          <Game state={gameState} dispatcher={gameDispatch} />
-        ) : (
-          <Navigate to="/" />
-        )}
-      </Route>
-      <Route path="/game-over">
-        <h1>Your Loose the game!</h1>
-      </Route>
-      <Route path="/win">
-        <h1>Your Win!</h1>
-      </Route>
-      <Route path="/">
-        <Start handleLoadCars={onLoadCards} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<WelcomePage />} />
+        <Route path="prepare" element={<PreparePage />} />
       </Route>
     </Routes>
   );

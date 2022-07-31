@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 
 /* @Machine */
-import { cardMachine } from 'Machines/card';
-
-/* @Types */
-import { CardProps } from './types';
+import { cardMachine } from 'machines/card';
 
 /* @Styles */
-import './Card.css';
+import './card.css';
 
-const Card: React.FunctionComponent<CardProps> = (props) => {
+type CardProps = GameCard & {
+  isRevealed: boolean;
+  onClick: (cardImprint: CardImprint) => void;
+};
+
+function Card(props: CardProps) {
   const [state, send] = useMachine(cardMachine);
-  const {
-    isRevealed,
-    image,
-    description,
-    author,
-    id,
-    onClick,
-    uniqKey,
-  } = props;
+  const { isRevealed, image, description, author, id, onClick, uniqKey } =
+    props;
 
   useEffect(() => {
     const type = isRevealed ? 'REVEAL' : 'UNGUESSED';
@@ -36,11 +31,12 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
   };
 
   return (
-    <div
+    <button
       className="game-card"
       onClick={() => onClick({ id, uniqKey })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      type="button"
     >
       {state.matches('unguessed') ? (
         <div className="game-card__hide" />
@@ -56,8 +52,8 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
           ) : null}
         </div>
       )}
-    </div>
+    </button>
   );
-};
+}
 
-export { Card };
+export default Card;

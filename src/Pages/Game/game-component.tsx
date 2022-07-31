@@ -1,17 +1,15 @@
 import React from 'react';
 
+/* @Components */
+import { Card } from 'components/card';
+
 /* @Types */
 import { GameComponentProps } from './types';
 
-/* @Components */
-import { Card } from 'Components/Card';
-
 /* @Styles */
-import './Game.css';
+import './game.css';
 
-const GameComponent: React.FunctionComponent<GameComponentProps> = (
-  props,
-) => {
+const GameComponent: React.FunctionComponent<GameComponentProps> = (props) => {
   const {
     cards,
     openedCards,
@@ -25,16 +23,14 @@ const GameComponent: React.FunctionComponent<GameComponentProps> = (
   return (
     <section className="game_section">
       {isCountdownEnd && <h2>You have {3 - attempts} attempts</h2>}
-      {!isCountdownEnd && (
-        <h2>Game start at {countdownTime / 1000} seconds</h2>
-      )}
+      {!isCountdownEnd && <h2>Game start at {countdownTime / 1000} seconds</h2>}
       <section className="game_play">
         {cards.map((card) => (
           <Card
             isRevealed={
               forceOpenedCards ||
               openedCards.some(
-                (openedCard) => openedCard.uniqKey === card.uniqKey,
+                (openedCard) => openedCard.uniqKey === card.uniqKey
               )
             }
             key={card.uniqKey}

@@ -1,17 +1,17 @@
 import React from 'react';
 
+/* @Components */
+import { Input } from 'components/input';
+import { Button } from 'components/button';
+
 /* @Types */
 import { StartComponentProps } from './types';
 
-/* @Components */
-import { Input } from 'Components/Input';
-import { Button } from 'Components/Button';
-
 /* @Styles */
-import './Start.css';
+import './start.css';
 
 const StartComponent: React.FunctionComponent<StartComponentProps> = (
-  props,
+  props
 ) => {
   const {
     handleInputChange,

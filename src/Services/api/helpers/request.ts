@@ -1,5 +1,3 @@
-import querystring from 'querystring';
-
 type Data = {
   [key: string]: any;
 };
@@ -22,18 +20,14 @@ interface FetchConfig {
   body?: string;
 }
 
-function makeUrl(url: string, query?: string | any): string {
+function makeUrl(url: string, query?: Record<string, any>): string {
   if (!query) {
     return url;
   }
 
-  let parseQuery = null;
-  if (typeof query === 'string') {
-    parseQuery = querystring.parse(query);
-  } else {
-    parseQuery = query;
-  }
-  const normalizeQuery = querystring.stringify(parseQuery);
+  const normalizeQuery = Object.entries(query)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
 
   return `${url}?${normalizeQuery}`;
 }
@@ -64,9 +58,7 @@ export async function makeRequest(params: Request): Promise<any> {
   const resp = await fetch(requestUrl, requestConfig);
 
   if (!resp.ok) {
-    throw new Error(
-      `${resp.statusText} ${resp.status} for url ${url}`,
-    );
+    throw new Error(`${resp.statusText} ${resp.status} for url ${url}`);
   }
 
   const respData = await resp.json();

@@ -1,1 +1,1 @@
-export { cardMachine } from './card';
+export { default as cardMachine } from './card-machine';

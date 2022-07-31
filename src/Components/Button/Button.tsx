@@ -1,23 +1,20 @@
-import React from 'react';
-
-/* @Types */
-import { ButtonProps } from './types';
-
 /* @Styles */
-import './Button.css';
+import './button.css';
 
-const Button: React.FunctionComponent<ButtonProps> = (props) => {
-  const { children, onClick, type } = props;
+type ButtonProps = {
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: 'submit' | 'reset' | 'button';
+  children: React.ReactNode;
+};
+
+function Button(props: ButtonProps) {
+  const { children, onClick, type = 'button' } = props;
 
   return (
     <button type={type} className="button" onClick={onClick}>
       {children}
     </button>
   );
-};
+}
 
-Button.defaultProps = {
-  type: 'button',
-};
-
-export { Button };
+export default Button;

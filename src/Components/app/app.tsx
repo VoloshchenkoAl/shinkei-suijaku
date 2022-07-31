@@ -1,28 +1,22 @@
-import React from 'react';
-import {
-  Switch,
-  Route,
-  useHistory,
-  Redirect,
-} from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { useMachine } from '@xstate/react';
 
 /* @Selectors */
-import { isCardsExistsSelector } from 'Machines/game/selector';
+import { isCardsExistsSelector } from 'machines/game/selector';
 
 /* @Pages */
-import { Start } from 'Pages/Start';
-import { Game } from 'Pages/Game';
+import { Start } from 'pages/start';
+import { Game } from 'pages/game';
 
 /* @Machine */
-import { gameMachine } from 'Machines/game';
+import { gameMachine } from 'machines/game';
 
-const App = () => {
-  const history = useHistory();
+function App() {
+  const navigate = useNavigate();
   const [gameState, gameDispatch] = useMachine(gameMachine, {
     actions: {
-      gameOver: () => history.push('/game-over'),
-      gameWin: () => history.push('/win'),
+      gameOver: () => navigate('/game-over'),
+      gameWin: () => navigate('/win'),
     },
   });
 
@@ -32,16 +26,16 @@ const App = () => {
       cards,
     });
 
-    history.push('/game');
+    navigate('/game');
   };
 
   return (
-    <Switch>
+    <Routes>
       <Route path="/game">
         {isCardsExistsSelector(gameState.context) ? (
           <Game state={gameState} dispatcher={gameDispatch} />
         ) : (
-          <Redirect to="/" />
+          <Navigate to="/" />
         )}
       </Route>
       <Route path="/game-over">
@@ -53,8 +47,8 @@ const App = () => {
       <Route path="/">
         <Start handleLoadCars={onLoadCards} />
       </Route>
-    </Switch>
+    </Routes>
   );
-};
+}
 
 export default App;

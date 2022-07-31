@@ -1,10 +1,10 @@
-import { Machine, assign } from 'xstate';
+import { createMachine, assign } from 'xstate';
 
-const maxAttempts: number = 3;
-const matchCards: number = 2;
-const checkDelay: number = 500;
+const maxAttempts = 3;
+const matchCards = 2;
+const checkDelay = 500;
 
-const gameMachine = Machine<
+const gameMachine = createMachine<
   GameMachineContext,
   GameMachineState,
   GameMachineEvent
@@ -100,7 +100,7 @@ const gameMachine = Machine<
   {
     actions: {
       hideForceOpenedCards: assign({
-        forceOpenedCards: (ctx, event) => false,
+        forceOpenedCards: () => false,
       }),
       setCards: assign({
         cards: (ctx, event) => {
@@ -127,7 +127,7 @@ const gameMachine = Machine<
       updateCardsInfo: assign((ctx) => {
         const { openCards, attempts, roundMatch } = ctx;
         const isCardsSame = roundMatch.every(
-          (card) => card.id === roundMatch[0].id,
+          (card) => card.id === roundMatch[0].id
         );
 
         if (isCardsSame) {
@@ -156,7 +156,7 @@ const gameMachine = Machine<
       gameOverCheck: (ctx) => ctx.attempts >= maxAttempts,
       winCheck: (ctx) => ctx.openCards.length === ctx.cards.length,
     },
-  },
+  }
 );
 
 export { gameMachine };

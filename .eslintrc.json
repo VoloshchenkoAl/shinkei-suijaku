@@ -1,3 +1,10 @@
 {
-  "extends": ["@macpaw/eslint-config-react", "@macpaw/eslint-config-typescript", "prettier"]
+  "extends": [
+    "@macpaw/eslint-config-react",
+    "@macpaw/eslint-config-typescript",
+    "prettier"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
 }

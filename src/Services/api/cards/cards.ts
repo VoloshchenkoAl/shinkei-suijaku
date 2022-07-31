@@ -1,5 +1,5 @@
 /* @Helpers */
-import { makeRequest } from 'Services/api/helpers/request';
+import { makeRequest } from 'services/api/helpers/request';
 
 /* @Mappers */
 import { cardsMapper } from './mapper';

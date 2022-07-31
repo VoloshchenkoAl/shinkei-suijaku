@@ -1,6 +1,10 @@
 {
-  "extends": ["react-app"],
+  "extends": [
+    "@macpaw/eslint-config-react",
+    "@macpaw/eslint-config-typescript",
+    "prettier"
+  ],
   "rules": {
-    "jsx-quotes": [2, "prefer-double"]
+    "react/react-in-jsx-scope": "off"
   }
 }

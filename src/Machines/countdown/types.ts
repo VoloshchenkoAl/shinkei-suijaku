@@ -15,6 +15,4 @@ export interface CountdownMachineContext {
   timer: number;
 }
 
-export type CountdownMachineEvent =
-  | { type: 'START' }
-  | { type: 'RESTART' };
+export type CountdownMachineEvent = { type: 'START' } | { type: 'RESTART' };

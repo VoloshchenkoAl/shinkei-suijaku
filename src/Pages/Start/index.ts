@@ -1,1 +1,1 @@
-export { StartContainer as Start } from './StartContainer';
+export { StartContainer as Start } from './start-container';

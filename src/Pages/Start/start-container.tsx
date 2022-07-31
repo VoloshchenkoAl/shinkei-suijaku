@@ -1,23 +1,23 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 
-/* @Types */
-import { StartContainerProps } from './types';
-
 /* @Machine */
-import { initGameMachine } from 'Machines/initGame';
-
-/* @Components */
-import { StartComponent } from './StartComponent';
+import { initGameMachine } from 'machines/init-game';
 
 /* @Api */
-import { cardsApi } from 'Services/api/cards';
+import { cardsApi } from 'services/api/cards';
+
+/* @Components */
+import { StartComponent } from './start-component';
+
+/* @Types */
+import { StartContainerProps } from './types';
 
 /* @Utils */
 import { getValidationText } from './utils';
 
 const StartContainer: React.FunctionComponent<StartContainerProps> = (
-  props,
+  props
 ) => {
   const { handleLoadCars } = props;
 
@@ -38,9 +38,7 @@ const StartContainer: React.FunctionComponent<StartContainerProps> = (
     send({ type: 'SUBMIT' });
   };
 
-  const searchValidationError = getValidationText(
-    state.context.error,
-  );
+  const searchValidationError = getValidationText(state.context.error);
 
   return (
     <StartComponent

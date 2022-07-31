@@ -1,6 +1,6 @@
-import { Machine } from 'xstate';
+import { createMachine } from 'xstate';
 
-const cardMachine = Machine<CardState, CardEvent>({
+const cardMachine = createMachine<CardState, CardEvent>({
   id: 'cardMachine',
   initial: 'unguessed',
   states: {
@@ -33,4 +33,4 @@ const cardMachine = Machine<CardState, CardEvent>({
   },
 });
 
-export { cardMachine };
+export default cardMachine;

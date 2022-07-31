@@ -1,5 +1,5 @@
 import { createMachine, assign } from 'xstate';
-import { pictureSearchValidation } from 'Services/validation/pictureSearch';
+import { pictureSearchValidation } from 'services/validation/pictureSearch';
 
 const initGameMachine = createMachine<
   InitGameMachineContext,
@@ -66,7 +66,7 @@ const initGameMachine = createMachine<
         error: (_, event: any) => event.data.toString(),
       }),
     },
-  },
+  }
 );
 
 export { initGameMachine };

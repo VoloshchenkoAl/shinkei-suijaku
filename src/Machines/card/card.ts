@@ -1,4 +1,4 @@
-import { Machine } from 'xstate';
+import { value Machine } from 'xstate';
 
 const cardMachine = Machine<CardState, CardEvent>({
   id: 'cardMachine',

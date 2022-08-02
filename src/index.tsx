@@ -4,7 +4,10 @@ import './index.css';
 /* @React Libs */
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+
+/* @Providers */
 import { BrowserRouter } from 'react-router-dom';
+import { GameProvider } from 'game-provider';
 
 /* @Components */
 import { App } from 'components/app';
@@ -16,7 +19,9 @@ function Root() {
   return (
     <StrictMode>
       <BrowserRouter>
-        <App />
+        <GameProvider>
+          <App />
+        </GameProvider>
       </BrowserRouter>
     </StrictMode>
   );

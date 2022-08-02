@@ -9,12 +9,12 @@ import { Layout } from 'components/layout';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<WelcomePage />} />
-        <Route path="prepare" element={<PreparePage />} />
-      </Route>
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<WelcomePage />}></Route>
+        <Route path="/prepare" element={<PreparePage />} />
+      </Routes>
+    </Layout>
   );
 }
 

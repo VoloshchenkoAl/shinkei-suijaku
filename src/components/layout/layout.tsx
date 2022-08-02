@@ -1,11 +1,11 @@
-import { Outlet } from 'react-router-dom';
+import type { PropsWithChildren } from 'react';
 
-function Layout() {
+function Layout(props: PropsWithChildren) {
+  const { children } = props;
+
   return (
     <div className="min-h-screen overflow-x-hidden p-4 flex items-center justify-center">
-      <div>
-        <Outlet />
-      </div>
+      <div>{children}</div>
     </div>
   );
 }

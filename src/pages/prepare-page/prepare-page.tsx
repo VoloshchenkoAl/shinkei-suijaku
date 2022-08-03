@@ -1,4 +1,18 @@
+/* @Hooks */
+import { useContext, useEffect } from 'react';
+import { useActor } from '@xstate/react';
+
+/* @Context */
+import { GameStateContext } from 'game-provider';
+
 function PreparePage() {
+  const { gameService } = useContext(GameStateContext);
+  const [, send] = useActor(gameService);
+
+  useEffect(() => {
+    send('PREPARE');
+  }, [send]);
+
   return (
     <>
       <main className="text-center md:text-left mb-4">

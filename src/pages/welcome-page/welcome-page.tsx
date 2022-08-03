@@ -1,3 +1,4 @@
+/* @Components */
 import { Link } from 'react-router-dom';
 
 function WelcomePage() {

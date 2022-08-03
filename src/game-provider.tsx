@@ -1,6 +1,7 @@
 /* React scope */
 import { createContext, PropsWithChildren } from 'react';
 import { useInterpret } from '@xstate/react';
+import { useNavigate } from 'react-router-dom';
 
 /* @Types */
 import type { InterpreterFrom } from 'xstate';
@@ -13,7 +14,14 @@ export const GameStateContext = createContext<{
 }>({ gameService: null as unknown as InterpreterFrom<typeof gameMachine> });
 
 export function GameProvider(props: PropsWithChildren) {
-  const gameService = useInterpret(gameMachine);
+  const navigate = useNavigate();
+  const gameService = useInterpret(gameMachine, {
+    actions: {
+      onGameReady: () => {
+        navigate('/game');
+      },
+    },
+  });
   const { children } = props;
 
   return (

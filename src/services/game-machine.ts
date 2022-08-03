@@ -37,7 +37,8 @@ export const gameMachine = createMachine<GameMachineContext, GameMachineEvent>({
         onDone: {
           target: 'game',
           actions: assign({
-            cards: (_, event: DoneInvokeEvent<Array<Card>>) => event.data,
+            cards: (_, event: DoneInvokeEvent<{ cards: Array<Card> }>) =>
+              event.data.cards,
           }),
         },
       },
@@ -48,6 +49,7 @@ export const gameMachine = createMachine<GameMachineContext, GameMachineEvent>({
       },
     },
     game: {
+      onEntry: ['onGameReady'],
       type: 'final',
     },
     loadCardsError: {

@@ -1,5 +1,5 @@
 {
-  "name": "picture-matching-game",
+  "name": "shinkei-suijaku",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,5 +44,6 @@
     "react-scripts": "^5.0.1",
     "tailwindcss": "^3.1.7",
     "typescript": "^4.7.4"
-  }
+  },
+  "license": "MIT"
 }

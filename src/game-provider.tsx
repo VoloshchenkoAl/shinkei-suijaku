@@ -20,6 +20,12 @@ export function GameProvider(props: PropsWithChildren) {
       onGameReady: () => {
         navigate('/game');
       },
+      onGameWin: () => {
+        navigate('/win');
+      },
+      onGamePlayAgain: () => {
+        navigate('/');
+      },
     },
   });
   const { children } = props;
